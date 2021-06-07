@@ -13,15 +13,15 @@ const RenderHomePage = async (req, res, next) => {
 
         // Fetch Gogoanime popular anime links
         request(
-            "https://www.gogoanime1.com/home/popular-animes",
+            "https://tioanime.com/directorio",
             (error, response, html) => {
                 if (!error && response.statusCode == 200) {
                     const $ = cheerio.load(html);
 
-                    $(".big-list .wide-anime-box").each((i, el) => {
+                    $(".animes list-unstyled row .anime").each((i, el) => {
                         var anime = {};
                         var genre = [];
-                        anime.picture = $(el).find(".anime-image").attr("style");
+                        anime.picture = $(el).find(".fa-play-circle").attr("img src");
                         anime.link = $(el).find(".anime-image").attr("href");
                         anime.name = $(el).find(".wab-title a").text();
                         anime.description = $(el).find(".wab-desc").text();
